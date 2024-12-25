@@ -1,0 +1,16 @@
+<div data-posts-container hx-get="{% url 'posts' %}?list_only=yes" hx-trigger="posts:update from:body">
+  {% if posts %}
+  <ul class="list-group">
+
+    {% for post in posts %}
+    <li class="list-group-item">
+      <p>{{ post.body }}</p>
+      <button hx-get="{{ post.edit_url }}" hx-target="body" hx-swap="beforeend" class="btn btn-outline-secondary">Edit
+        post</button>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="alert alert-info">You don't have any posts yet.</p>
+  {% endif %}
+</div>

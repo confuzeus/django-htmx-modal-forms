@@ -1,0 +1,13 @@
+<form hx-post="{{ action_url }}" hx-swap="none" data-post-form>
+  {% csrf_token %}
+  <div class="mb-3">
+    <textarea class="form-control {% if form.errors.body %}is-invalid{% endif %}" name="body" id="postBody"
+      placeholder="What is happening?!">{{ form.body.value|default:"" }}</textarea>
+    {% if form.errors.body %}
+    {% for error in form.errors.body %}
+    <div class="invalid-feedback">{{ error }}</div>
+    {% endfor %}
+    {% endif %}
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
